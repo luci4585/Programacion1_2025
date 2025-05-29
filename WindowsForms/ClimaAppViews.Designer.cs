@@ -37,6 +37,9 @@
             botonNosotrosClick = new FontAwesome.Sharp.IconToolStripButton();
             botonSalirApp = new FontAwesome.Sharp.IconToolStripButton();
             labelTituloApp = new Label();
+            BtnObtenerClima = new Button();
+            LabelTemperatura = new Label();
+            label1 = new Label();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             SuspendLayout();
@@ -67,7 +70,7 @@
             subMenuNosotros.IconColor = Color.Black;
             subMenuNosotros.IconFont = FontAwesome.Sharp.IconFont.Auto;
             subMenuNosotros.Name = "subMenuNosotros";
-            subMenuNosotros.Size = new Size(224, 26);
+            subMenuNosotros.Size = new Size(152, 26);
             subMenuNosotros.Text = "Nosotros";
             subMenuNosotros.Click += subMenuNosotros_Click;
             // 
@@ -137,11 +140,43 @@
             labelTituloApp.TabIndex = 2;
             labelTituloApp.Text = "App del Clima - ISP20 - 2do año TSDS";
             // 
+            // BtnObtenerClima
+            // 
+            BtnObtenerClima.Location = new Point(47, 149);
+            BtnObtenerClima.Name = "BtnObtenerClima";
+            BtnObtenerClima.Size = new Size(154, 35);
+            BtnObtenerClima.TabIndex = 3;
+            BtnObtenerClima.Text = "Obtener Clima";
+            BtnObtenerClima.UseVisualStyleBackColor = true;
+            BtnObtenerClima.Click += BtnObtenerClima_Click;
+            // 
+            // LabelTemperatura
+            // 
+            LabelTemperatura.AutoSize = true;
+            LabelTemperatura.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic);
+            LabelTemperatura.Location = new Point(243, 156);
+            LabelTemperatura.Name = "LabelTemperatura";
+            LabelTemperatura.Size = new Size(139, 28);
+            LabelTemperatura.TabIndex = 4;
+            LabelTemperatura.Text = "Temperatura:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic);
+            label1.Location = new Point(416, 162);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 28);
+            label1.TabIndex = 5;
+            // 
             // ClimaAppViews
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(595, 494);
+            Controls.Add(label1);
+            Controls.Add(LabelTemperatura);
+            Controls.Add(BtnObtenerClima);
             Controls.Add(labelTituloApp);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
@@ -169,5 +204,8 @@
         private Label labelTituloApp;
         private FontAwesome.Sharp.IconMenuItem subMenuSalirDeLaApp;
         private FontAwesome.Sharp.IconMenuItem subMenuNosotros;
+        private Button BtnObtenerClima;
+        private Label LabelTemperatura;
+        private Label label1;
     }
 }
