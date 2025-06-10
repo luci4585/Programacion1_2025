@@ -15,6 +15,10 @@ namespace WindowsForms
     public partial class PeliculasView : Form
     {
         HttpClient clientHttp = new HttpClient();
+        string url = "https://cinesoftware-8275.restdb.io/rest/peliculas?apikey=510a2b7336a80665cf49419b623d4c4132ab0";
+        Pelicula peliculaModificada;
+        List<Pelicula> peliculas;
+
         public PeliculasView()
         {
             InitializeComponent();
@@ -23,17 +27,25 @@ namespace WindowsForms
 
         private async void ObtenemosPeliculas()
         {
-            string url = "https://cinesoftware-8275.restdb.io/rest/peliculas?apikey=510a2b7336a80665cf49419b623d4c4132ab0";
-
             var response = await clientHttp.GetAsync(url);
             if (response != null)
             {
-                List<Pelicula> peliculas = await response.Content.ReadFromJsonAsync<List<Pelicula>>();
+                peliculas = await response.Content.ReadFromJsonAsync<List<Pelicula>>();
                 GridPeliculas.DataSource = peliculas;
             }
         }
 
-        private async void BtnEliminar_Click(object sender, EventArgs e)
+
+        private void GridPeliculas_SelectionChanged_1(object sender, EventArgs e)
+        {
+            if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
+            {
+                Pelicula peliculaSeleccionada = (Pelicula)GridPeliculas.SelectedRows[0].DataBoundItem;
+                FilmPicture.ImageLocation = peliculaSeleccionada.portada;
+            }
+        }
+
+        private async void BtnEliminar_Click_1(object sender, EventArgs e)
         {
             //chequeamos que haya películas seleccionadas
             if (GridPeliculas.Rows.Count > 0 && GridPeliculas.SelectedRows.Count > 0)
@@ -58,13 +70,83 @@ namespace WindowsForms
             }
         }
 
-        private void GridPeliculas_SelectionChanged(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count >0)
+            LimpiarControlesAgregarEditar();
+            TabControl.SelectTab("TabpageAgregarEditar");
+        }
+        private void LimpiarControlesAgregarEditar()
+        {
+            TxtTitulo.Clear();
+            NumericDuracion.Value = 0;
+            TxtPortada.Clear();
+            NumericCalificacion.Value = 0;
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            TabControl.SelectTab("TabPageLista");
+        }
+
+        private async void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            Pelicula peliculaAGuardar = new Pelicula
             {
-                Pelicula peliculaSeleccionada = (Pelicula)GridPeliculas.SelectedRows[0].DataBoundItem;
-                FilmPicture.ImageLocation = peliculaSeleccionada.portada;
+                titulo = TxtTitulo.Text,
+                duracion = (int)NumericDuracion.Value,
+                portada = TxtPortada.Text,
+                calificacion = (double)NumericCalificacion.Value
+            };
+
+            HttpResponseMessage response;
+            if (peliculaModificada != null)
+            {
+                var url = $"https://cinesoftware-8275.restdb.io/rest/peliculas/{peliculaModificada._id}?apikey=510a2b7336a80665cf49419b623d4c4132ab0";
+                response = await clientHttp.PutAsJsonAsync(url, peliculaAGuardar);
+            }
+            else
+            {
+                response = await clientHttp.PostAsJsonAsync(url, peliculaAGuardar);
+            }
+            if (response.IsSuccessStatusCode)
+            {
+                peliculaModificada = null; // Reiniciamos la variable para futuras inserciones
+                MessageBox.Show("Pelicula se guardó correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ObtenemosPeliculas();
+                LimpiarControlesAgregarEditar();
+                TabControl.SelectTab("TabPageLista");
+            }
+            else
+            {
+                MessageBox.Show("Error al agregar la pelicula", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnModificar_Click(object sender, EventArgs e)
+        {
+            //chequeamos que haya películas seleccionadas
+            if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
+            {
+                peliculaModificada = (Pelicula)GridPeliculas.SelectedRows[0].DataBoundItem;
+                TxtTitulo.Text = peliculaModificada.titulo;
+                NumericDuracion.Value = peliculaModificada.duracion;
+                TxtPortada.Text = peliculaModificada.portada;
+                NumericCalificacion.Value = (decimal)peliculaModificada.calificacion;
+                TabControl.SelectTab("TabpageAgregarEditar");
+            }
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            GridPeliculas.DataSource = peliculas.Where(p => p.titulo.ToUpper().Contains(TxtBuscar.Text.ToUpper())).ToList();
+        }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(TxtBuscar.Text))
+            {
+                BtnBuscar.PerformClick();
             }
         }
     }
-}
+} 
