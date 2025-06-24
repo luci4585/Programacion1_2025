@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsForms.Models
+namespace AppNetMaui.Models
 {
     public class Pelicula
     {
-        public string? _id { get; set; }
+        public string _id { get; set; }
         public string titulo { get; set; }
         public int duracion { get; set; }
         public string portada { get; set; }

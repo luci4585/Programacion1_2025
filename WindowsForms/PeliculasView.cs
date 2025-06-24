@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsForms.Models;
+using WindowsForms.Services;
 
 namespace WindowsForms
 {
@@ -16,6 +17,7 @@ namespace WindowsForms
     {
         HttpClient clientHttp = new HttpClient();
         string url = "https://cinesoftware-8275.restdb.io/rest/peliculas?apikey=510a2b7336a80665cf49419b623d4c4132ab0";
+        PeliculaService peliculaService = new PeliculaService();
         Pelicula peliculaModificada;
         List<Pelicula> peliculas;
 
@@ -27,12 +29,7 @@ namespace WindowsForms
 
         private async void ObtenemosPeliculas()
         {
-            var response = await clientHttp.GetAsync(url);
-            if (response != null)
-            {
-                peliculas = await response.Content.ReadFromJsonAsync<List<Pelicula>>();
-                GridPeliculas.DataSource = peliculas;
-            }
+            GridPeliculas.DataSource = await peliculaService.GetAllAsync();
         }
 
 
@@ -54,13 +51,15 @@ namespace WindowsForms
                 var respuesta = MessageBox.Show($"¿Está seguro de eliminar la película {peliculaSeleccionada.titulo} seleccionada?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
-                    //obtenemos el id de la película seleccionada
-                    string url = $"https://cinesoftware-8275.restdb.io/rest/peliculas/{peliculaSeleccionada._id}?apikey=510a2b7336a80665cf49419b623d4c4132ab0";
-                    var response = await clientHttp.DeleteAsync(url);
-                    if (response.IsSuccessStatusCode)
+                    if (await peliculaService.DeleteAsync(peliculaSeleccionada._id))
                     {
-                        MessageBox.Show($"Película {peliculaSeleccionada.titulo} eliminada correctamente", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LabelStatusMessage.Text = $"Pelicula {peliculaSeleccionada.titulo} eliminada correctamente";
+                        TimerStatusBar.Start();
                         ObtenemosPeliculas();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al eliminar la película", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -92,26 +91,27 @@ namespace WindowsForms
         {
             Pelicula peliculaAGuardar = new Pelicula
             {
+                _id = peliculaModificada?._id??null,
                 titulo = TxtTitulo.Text,
                 duracion = (int)NumericDuracion.Value,
                 portada = TxtPortada.Text,
                 calificacion = (double)NumericCalificacion.Value
             };
 
-            HttpResponseMessage response;
+            bool response;
             if (peliculaModificada != null)
             {
-                var url = $"https://cinesoftware-8275.restdb.io/rest/peliculas/{peliculaModificada._id}?apikey=510a2b7336a80665cf49419b623d4c4132ab0";
-                response = await clientHttp.PutAsJsonAsync(url, peliculaAGuardar);
+                response=await peliculaService.UpdateAsync(peliculaAGuardar);
             }
             else
             {
-                response = await clientHttp.PostAsJsonAsync(url, peliculaAGuardar);
+                response = await peliculaService.AddAsync(peliculaAGuardar);
             }
-            if (response.IsSuccessStatusCode)
+            if (response)
             {
                 peliculaModificada = null; // Reiniciamos la variable para futuras inserciones
-                MessageBox.Show("Pelicula se guardó correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LabelStatusMessage.Text = "Película modificada correctamente";
+                TimerStatusBar.Start();
                 ObtenemosPeliculas();
                 LimpiarControlesAgregarEditar();
                 TabControl.SelectTab("TabPageLista");
@@ -143,10 +143,16 @@ namespace WindowsForms
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(TxtBuscar.Text))
+            if (string.IsNullOrWhiteSpace(TxtBuscar.Text))
             {
                 BtnBuscar.PerformClick();
             }
+        }
+
+        private void TimerStatusBar_Tick(object sender, EventArgs e)
+        {
+            LabelStatusMessage.Text = string.Empty;
+            TimerStatusBar.Stop();
         }
     }
 } 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             TabControl = new TabControl();
             TabPageLista = new TabPage();
             BtnEliminar = new FontAwesome.Sharp.IconButton();
@@ -52,6 +53,9 @@
             BtnGuardar = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
             label1 = new Label();
+            statusStrip1 = new StatusStrip();
+            LabelStatusMessage = new ToolStripStatusLabel();
+            TimerStatusBar = new System.Windows.Forms.Timer(components);
             TabControl.SuspendLayout();
             TabPageLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)FilmPicture).BeginInit();
@@ -60,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)NumericCalificacion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NumericDuracion).BeginInit();
             panel1.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // TabControl
@@ -339,11 +344,32 @@
             label1.TabIndex = 0;
             label1.Text = "Películas";
             // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { LabelStatusMessage });
+            statusStrip1.Location = new Point(0, 549);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(1184, 22);
+            statusStrip1.TabIndex = 8;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // LabelStatusMessage
+            // 
+            LabelStatusMessage.Name = "LabelStatusMessage";
+            LabelStatusMessage.Size = new Size(0, 16);
+            // 
+            // TimerStatusBar
+            // 
+            TimerStatusBar.Interval = 5000;
+            TimerStatusBar.Tick += TimerStatusBar_Tick;
+            // 
             // PeliculasView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1165, 559);
+            ClientSize = new Size(1184, 571);
+            Controls.Add(statusStrip1);
             Controls.Add(panel1);
             Controls.Add(TabControl);
             Name = "PeliculasView";
@@ -358,7 +384,10 @@
             ((System.ComponentModel.ISupportInitialize)NumericDuracion).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -389,5 +418,8 @@
         private NumericUpDown NumericDuracion;
         private TextBox TxtPortada;
         private NumericUpDown NumericCalificacion;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel LabelStatusMessage;
+        private System.Windows.Forms.Timer TimerStatusBar;
     }
 }
