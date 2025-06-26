@@ -19,7 +19,7 @@ namespace WindowsForms
         string url = "https://cinesoftware-8275.restdb.io/rest/peliculas?apikey=510a2b7336a80665cf49419b623d4c4132ab0";
         PeliculaService peliculaService = new PeliculaService();
         Pelicula peliculaModificada;
-        List<Pelicula> peliculas;
+        List<Pelicula>? peliculas;
 
         public PeliculasView()
         {
@@ -29,7 +29,8 @@ namespace WindowsForms
 
         private async void ObtenemosPeliculas()
         {
-            GridPeliculas.DataSource = await peliculaService.GetAllAsync();
+            peliculas = await peliculaService.GetAllAsync();
+            GridPeliculas.DataSource = peliculas;
         }
 
 
@@ -143,10 +144,7 @@ namespace WindowsForms
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtBuscar.Text))
-            {
                 BtnBuscar.PerformClick();
-            }
         }
 
         private void TimerStatusBar_Tick(object sender, EventArgs e)

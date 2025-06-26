@@ -156,6 +156,7 @@
             BtnSalir.Text = "Salir";
             BtnSalir.TextAlign = ContentAlignment.MiddleRight;
             BtnSalir.UseVisualStyleBackColor = true;
+            BtnSalir.Click += BtnSalir_Click;
             // 
             // BtnModificar
             // 
@@ -364,7 +365,7 @@
             TimerStatusBar.Interval = 5000;
             TimerStatusBar.Tick += TimerStatusBar_Tick;
             // 
-            // PeliculasView
+            // PeliculasADOView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -372,7 +373,7 @@
             Controls.Add(statusStrip1);
             Controls.Add(panel1);
             Controls.Add(TabControl);
-            Name = "PeliculasView";
+            Name = "PeliculasADOView";
             TabControl.ResumeLayout(false);
             TabPageLista.ResumeLayout(false);
             TabPageLista.PerformLayout();

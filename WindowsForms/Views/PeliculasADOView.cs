@@ -27,7 +27,8 @@ namespace WindowsForms
 
         private async void ObtenemosPeliculas()
         {
-            GridPeliculas.DataSource = await peliculaService.GetAllAsync();
+            peliculas = await peliculaService.GetAllAsync();
+            GridPeliculas.DataSource = peliculas;
         }
 
 
@@ -49,7 +50,7 @@ namespace WindowsForms
                 var respuesta = MessageBox.Show($"¿Está seguro de eliminar la película {peliculaSeleccionada.titulo} seleccionada?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
-                    if (await peliculaService.DeleteAsync(peliculaSeleccionada._id))
+                    if (await peliculaService.DeleteAsync(peliculaSeleccionada.id))
                     {
                         LabelStatusMessage.Text = $"Pelicula {peliculaSeleccionada.titulo} eliminada correctamente";
                         TimerStatusBar.Start();
@@ -83,13 +84,14 @@ namespace WindowsForms
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             TabControl.SelectTab("TabPageLista");
+            peliculaModificada = null; // Reiniciamos la variable para futuras inserciones
         }
 
         private async void BtnGuardar_Click(object sender, EventArgs e)
         {
             Pelicula peliculaAGuardar = new Pelicula
             {
-                _id = peliculaModificada?._id??null,
+                id = peliculaModificada?.id ?? null,
                 titulo = TxtTitulo.Text,
                 duracion = (int)NumericDuracion.Value,
                 portada = TxtPortada.Text,
@@ -99,7 +101,7 @@ namespace WindowsForms
             bool response;
             if (peliculaModificada != null)
             {
-                response=await peliculaService.UpdateAsync(peliculaAGuardar);
+                response = await peliculaService.UpdateAsync(peliculaAGuardar);
             }
             else
             {
@@ -151,6 +153,11 @@ namespace WindowsForms
         {
             LabelStatusMessage.Text = string.Empty;
             TimerStatusBar.Stop();
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 } 
