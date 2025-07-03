@@ -37,5 +37,11 @@ namespace WindowsForms
             var peliculasADO = new PeliculasADOView();
             peliculasADO.ShowDialog();
         }
+
+        private void SubMenuPeliculasEF_Click(object sender, EventArgs e)
+        {
+            var peliculasEF = new PeliculasEFView();
+            peliculasEF.ShowDialog();
+        }
     }
 }

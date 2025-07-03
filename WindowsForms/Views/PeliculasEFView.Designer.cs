@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms
 {
-    partial class PeliculasView
+    partial class PeliculasEFView
     {
         /// <summary>
         /// Required designer variable.
@@ -41,6 +41,8 @@
             FilmPicture = new PictureBox();
             GridPeliculas = new DataGridView();
             TabPageAgregarEditar = new TabPage();
+            label7 = new Label();
+            ComboPaises = new ComboBox();
             label6 = new Label();
             NumericCalificacion = new NumericUpDown();
             TxtPortada = new TextBox();
@@ -157,6 +159,7 @@
             BtnSalir.Text = "Salir";
             BtnSalir.TextAlign = ContentAlignment.MiddleRight;
             BtnSalir.UseVisualStyleBackColor = true;
+            BtnSalir.Click += BtnSalir_Click;
             // 
             // BtnModificar
             // 
@@ -190,6 +193,7 @@
             // 
             // FilmPicture
             // 
+            FilmPicture.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             FilmPicture.Location = new Point(580, 68);
             FilmPicture.Name = "FilmPicture";
             FilmPicture.Size = new Size(364, 350);
@@ -213,6 +217,8 @@
             // 
             // TabPageAgregarEditar
             // 
+            TabPageAgregarEditar.Controls.Add(label7);
+            TabPageAgregarEditar.Controls.Add(ComboPaises);
             TabPageAgregarEditar.Controls.Add(label6);
             TabPageAgregarEditar.Controls.Add(NumericCalificacion);
             TabPageAgregarEditar.Controls.Add(TxtPortada);
@@ -230,6 +236,23 @@
             TabPageAgregarEditar.TabIndex = 1;
             TabPageAgregarEditar.Text = "Agregar/Editar";
             TabPageAgregarEditar.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(717, 198);
+            label7.Name = "label7";
+            label7.Size = new Size(37, 20);
+            label7.TabIndex = 24;
+            label7.Text = "País:";
+            // 
+            // ComboPaises
+            // 
+            ComboPaises.FormattingEnabled = true;
+            ComboPaises.Location = new Point(783, 195);
+            ComboPaises.Name = "ComboPaises";
+            ComboPaises.Size = new Size(221, 28);
+            ComboPaises.TabIndex = 23;
             // 
             // label6
             // 
@@ -365,7 +388,7 @@
             TimerStatusBar.Interval = 5000;
             TimerStatusBar.Tick += TimerStatusBar_Tick;
             // 
-            // PeliculasView
+            // PeliculasEFView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -373,7 +396,7 @@
             Controls.Add(statusStrip1);
             Controls.Add(panel1);
             Controls.Add(TabControl);
-            Name = "PeliculasView";
+            Name = "PeliculasEFView";
             TabControl.ResumeLayout(false);
             TabPageLista.ResumeLayout(false);
             TabPageLista.PerformLayout();
@@ -422,5 +445,7 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel LabelStatusMessage;
         private System.Windows.Forms.Timer TimerStatusBar;
+        private Label label7;
+        private ComboBox ComboPaises;
     }
 }
