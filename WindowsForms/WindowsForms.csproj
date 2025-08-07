@@ -32,6 +32,9 @@
     <Compile Update="Views\PeliculasADOView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\PaisesEFView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\PeliculasEFView.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -36,11 +36,12 @@
             SubMenuTrajabosEnClase = new FontAwesome.Sharp.IconMenuItem();
             SubMenuFormPeliculasApi = new FontAwesome.Sharp.IconMenuItem();
             SubMenuFormPeliculasADO = new FontAwesome.Sharp.IconMenuItem();
+            SubMenuPeliculasEF = new ToolStripMenuItem();
             salirToolStripMenuItem = new ToolStripMenuItem();
             SubMenuSalirDelSistema = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             SubMenuAcercaDe = new FontAwesome.Sharp.IconMenuItem();
-            SubMenuPeliculasEF = new ToolStripMenuItem();
+            SubmenuPaisesEF = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -93,7 +94,7 @@
             // 
             // SubMenuTrajabosEnClase
             // 
-            SubMenuTrajabosEnClase.DropDownItems.AddRange(new ToolStripItem[] { SubMenuFormPeliculasApi, SubMenuFormPeliculasADO, SubMenuPeliculasEF });
+            SubMenuTrajabosEnClase.DropDownItems.AddRange(new ToolStripItem[] { SubMenuFormPeliculasApi, SubMenuFormPeliculasADO, SubMenuPeliculasEF, SubmenuPaisesEF });
             SubMenuTrajabosEnClase.IconChar = FontAwesome.Sharp.IconChar.None;
             SubMenuTrajabosEnClase.IconColor = Color.Black;
             SubMenuTrajabosEnClase.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -120,6 +121,13 @@
             SubMenuFormPeliculasADO.Size = new Size(352, 26);
             SubMenuFormPeliculasADO.Text = "Formulario Películas (ADO Net)";
             SubMenuFormPeliculasADO.Click += SubMenuFormPeliculasADO_Click;
+            // 
+            // SubMenuPeliculasEF
+            // 
+            SubMenuPeliculasEF.Name = "SubMenuPeliculasEF";
+            SubMenuPeliculasEF.Size = new Size(352, 26);
+            SubMenuPeliculasEF.Text = "Formulario Películas (Entity Framework)";
+            SubMenuPeliculasEF.Click += SubMenuPeliculasEF_Click;
             // 
             // salirToolStripMenuItem
             // 
@@ -149,12 +157,12 @@
             SubMenuAcercaDe.Size = new Size(200, 26);
             SubMenuAcercaDe.Text = "Acerca de...";
             // 
-            // SubMenuPeliculasEF
+            // SubmenuPaisesEF
             // 
-            SubMenuPeliculasEF.Name = "SubMenuPeliculasEF";
-            SubMenuPeliculasEF.Size = new Size(352, 26);
-            SubMenuPeliculasEF.Text = "Formulario Películas (Entity Framework)";
-            SubMenuPeliculasEF.Click += SubMenuPeliculasEF_Click;
+            SubmenuPaisesEF.Name = "SubmenuPaisesEF";
+            SubmenuPaisesEF.Size = new Size(352, 26);
+            SubmenuPaisesEF.Text = "Formulario Paises (Entity Framework)";
+            SubmenuPaisesEF.Click += SubmenuPaisesEF_Click;
             // 
             // MenuPrincipalViews
             // 
@@ -187,5 +195,6 @@
         private FontAwesome.Sharp.IconMenuItem SubMenuFormPeliculasApi;
         private FontAwesome.Sharp.IconMenuItem SubMenuFormPeliculasADO;
         private ToolStripMenuItem SubMenuPeliculasEF;
+        private ToolStripMenuItem SubmenuPaisesEF;
     }
 }

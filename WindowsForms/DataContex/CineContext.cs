@@ -29,7 +29,7 @@ namespace WindowsForms.DataContex
             if (!optionsBuilder.IsConfigured)
             {
                 //creamos una cadena de conexión para el mysql local
-                string cnn = "server=127.0.0.1;database=cinecontext;user=root;password=;";
+                string cnn = "server=127.0.0.1;database=cinecontext;user=root;password=;SslMode=none;";
                 optionsBuilder.UseMySql(cnn, ServerVersion.AutoDetect(cnn));
             }
         }

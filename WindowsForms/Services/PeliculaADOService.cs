@@ -13,7 +13,7 @@ namespace WindowsForms.Services
     public class PeliculaADOService
     {
         //connectionstring a mysql user root pass root
-        string connectionString = "server=127.0.0.1;user=root;password=;database=programacion|_2025;";
+        string connectionString = "server=127.0.0.1;user=root;password=;database=programacioni_2025;SslMode=none;";
 
         public async Task<List<Pelicula>?> GetAllAsync()
         {

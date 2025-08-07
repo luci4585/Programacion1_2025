@@ -1,0 +1,9 @@
+﻿/*defino un estilo con fondo de color y borde de una línea para el título de la sección*/
+h1 {
+    background-color: #f0f0f0;
+    border-bottom: 2px double #ccc;
+    padding: 10px;
+    margin-bottom: 1rem;
+    font-size: 1.5em;
+    color: #333;
+}

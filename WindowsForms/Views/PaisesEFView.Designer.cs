@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms
 {
-    partial class PeliculasEFView
+    partial class PaisesEFView
     {
         /// <summary>
         /// Required designer variable.
@@ -38,18 +38,9 @@
             BtnSalir = new FontAwesome.Sharp.IconButton();
             BtnModificar = new FontAwesome.Sharp.IconButton();
             BtnAgregar = new FontAwesome.Sharp.IconButton();
-            FilmPicture = new PictureBox();
-            GridPeliculas = new DataGridView();
+            GridPaises = new DataGridView();
             TabPageAgregarEditar = new TabPage();
-            label7 = new Label();
-            ComboPaises = new ComboBox();
-            label6 = new Label();
-            NumericCalificacion = new NumericUpDown();
-            TxtPortada = new TextBox();
-            label5 = new Label();
-            NumericDuracion = new NumericUpDown();
-            label4 = new Label();
-            TxtTitulo = new TextBox();
+            TxtNombre = new TextBox();
             label3 = new Label();
             BtnCancelar = new FontAwesome.Sharp.IconButton();
             BtnGuardar = new FontAwesome.Sharp.IconButton();
@@ -60,11 +51,8 @@
             TimerStatusBar = new System.Windows.Forms.Timer(components);
             TabControl.SuspendLayout();
             TabPageLista.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)FilmPicture).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)GridPeliculas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)GridPaises).BeginInit();
             TabPageAgregarEditar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)NumericCalificacion).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)NumericDuracion).BeginInit();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -89,8 +77,7 @@
             TabPageLista.Controls.Add(BtnSalir);
             TabPageLista.Controls.Add(BtnModificar);
             TabPageLista.Controls.Add(BtnAgregar);
-            TabPageLista.Controls.Add(FilmPicture);
-            TabPageLista.Controls.Add(GridPeliculas);
+            TabPageLista.Controls.Add(GridPaises);
             TabPageLista.Location = new Point(4, 29);
             TabPageLista.Name = "TabPageLista";
             TabPageLista.Padding = new Padding(3);
@@ -191,41 +178,22 @@
             BtnAgregar.UseVisualStyleBackColor = true;
             BtnAgregar.Click += BtnAgregar_Click;
             // 
-            // FilmPicture
+            // GridPaises
             // 
-            FilmPicture.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            FilmPicture.Location = new Point(580, 68);
-            FilmPicture.Name = "FilmPicture";
-            FilmPicture.Size = new Size(364, 350);
-            FilmPicture.SizeMode = PictureBoxSizeMode.StretchImage;
-            FilmPicture.TabIndex = 6;
-            FilmPicture.TabStop = false;
-            // 
-            // GridPeliculas
-            // 
-            GridPeliculas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            GridPeliculas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            GridPeliculas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            GridPeliculas.Location = new Point(3, 68);
-            GridPeliculas.MultiSelect = false;
-            GridPeliculas.Name = "GridPeliculas";
-            GridPeliculas.RowHeadersWidth = 51;
-            GridPeliculas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridPeliculas.Size = new Size(571, 350);
-            GridPeliculas.TabIndex = 1;
-            GridPeliculas.SelectionChanged += GridPeliculas_SelectionChanged_1;
+            GridPaises.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            GridPaises.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            GridPaises.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            GridPaises.Location = new Point(3, 68);
+            GridPaises.MultiSelect = false;
+            GridPaises.Name = "GridPaises";
+            GridPaises.RowHeadersWidth = 51;
+            GridPaises.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridPaises.Size = new Size(941, 336);
+            GridPaises.TabIndex = 1;
             // 
             // TabPageAgregarEditar
             // 
-            TabPageAgregarEditar.Controls.Add(label7);
-            TabPageAgregarEditar.Controls.Add(ComboPaises);
-            TabPageAgregarEditar.Controls.Add(label6);
-            TabPageAgregarEditar.Controls.Add(NumericCalificacion);
-            TabPageAgregarEditar.Controls.Add(TxtPortada);
-            TabPageAgregarEditar.Controls.Add(label5);
-            TabPageAgregarEditar.Controls.Add(NumericDuracion);
-            TabPageAgregarEditar.Controls.Add(label4);
-            TabPageAgregarEditar.Controls.Add(TxtTitulo);
+            TabPageAgregarEditar.Controls.Add(TxtNombre);
             TabPageAgregarEditar.Controls.Add(label3);
             TabPageAgregarEditar.Controls.Add(BtnCancelar);
             TabPageAgregarEditar.Controls.Add(BtnGuardar);
@@ -237,89 +205,21 @@
             TabPageAgregarEditar.Text = "Agregar/Editar";
             TabPageAgregarEditar.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // TxtNombre
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(717, 198);
-            label7.Name = "label7";
-            label7.Size = new Size(37, 20);
-            label7.TabIndex = 24;
-            label7.Text = "País:";
-            // 
-            // ComboPaises
-            // 
-            ComboPaises.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboPaises.FormattingEnabled = true;
-            ComboPaises.Location = new Point(783, 195);
-            ComboPaises.Name = "ComboPaises";
-            ComboPaises.Size = new Size(221, 28);
-            ComboPaises.TabIndex = 23;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(75, 240);
-            label6.Name = "label6";
-            label6.Size = new Size(89, 20);
-            label6.TabIndex = 22;
-            label6.Text = "Calificación:";
-            // 
-            // NumericCalificacion
-            // 
-            NumericCalificacion.Location = new Point(188, 238);
-            NumericCalificacion.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            NumericCalificacion.Name = "NumericCalificacion";
-            NumericCalificacion.Size = new Size(150, 27);
-            NumericCalificacion.TabIndex = 21;
-            // 
-            // TxtPortada
-            // 
-            TxtPortada.Location = new Point(158, 115);
-            TxtPortada.Name = "TxtPortada";
-            TxtPortada.Size = new Size(846, 27);
-            TxtPortada.TabIndex = 20;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(75, 186);
-            label5.Name = "label5";
-            label5.Size = new Size(149, 20);
-            label5.TabIndex = 19;
-            label5.Text = "Duración en minutos:";
-            // 
-            // NumericDuracion
-            // 
-            NumericDuracion.Location = new Point(230, 184);
-            NumericDuracion.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            NumericDuracion.Name = "NumericDuracion";
-            NumericDuracion.Size = new Size(150, 27);
-            NumericDuracion.TabIndex = 18;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(75, 115);
-            label4.Name = "label4";
-            label4.Size = new Size(63, 20);
-            label4.TabIndex = 16;
-            label4.Text = "Portada:";
-            // 
-            // TxtTitulo
-            // 
-            TxtTitulo.Location = new Point(158, 50);
-            TxtTitulo.Name = "TxtTitulo";
-            TxtTitulo.Size = new Size(846, 27);
-            TxtTitulo.TabIndex = 15;
+            TxtNombre.Location = new Point(221, 184);
+            TxtNombre.Name = "TxtNombre";
+            TxtNombre.Size = new Size(846, 27);
+            TxtNombre.TabIndex = 15;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(75, 53);
+            label3.Location = new Point(129, 187);
             label3.Name = "label3";
-            label3.Size = new Size(50, 20);
+            label3.Size = new Size(64, 20);
             label3.TabIndex = 14;
-            label3.Text = "Título:";
+            label3.Text = "Nombre";
             // 
             // BtnCancelar
             // 
@@ -365,9 +265,9 @@
             label1.Font = new Font("Impact", 20F);
             label1.Location = new Point(3, 10);
             label1.Name = "label1";
-            label1.Size = new Size(147, 42);
+            label1.Size = new Size(110, 42);
             label1.TabIndex = 0;
-            label1.Text = "Películas";
+            label1.Text = "Paises";
             // 
             // statusStrip1
             // 
@@ -389,7 +289,7 @@
             TimerStatusBar.Interval = 5000;
             TimerStatusBar.Tick += TimerStatusBar_Tick;
             // 
-            // PeliculasEFView
+            // PaisesEFView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -397,16 +297,13 @@
             Controls.Add(statusStrip1);
             Controls.Add(panel1);
             Controls.Add(TabControl);
-            Name = "PeliculasEFView";
+            Name = "PaisesEFView";
             TabControl.ResumeLayout(false);
             TabPageLista.ResumeLayout(false);
             TabPageLista.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)FilmPicture).EndInit();
-            ((System.ComponentModel.ISupportInitialize)GridPeliculas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)GridPaises).EndInit();
             TabPageAgregarEditar.ResumeLayout(false);
             TabPageAgregarEditar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)NumericCalificacion).EndInit();
-            ((System.ComponentModel.ISupportInitialize)NumericDuracion).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             statusStrip1.ResumeLayout(false);
@@ -419,8 +316,7 @@
         private TabControl TabControl;
         private TabPage TabPageLista;
         private TabPage TabPageAgregarEditar;
-        private PictureBox FilmPicture;
-        private DataGridView GridPeliculas;
+        private DataGridView GridPaises;
         private FontAwesome.Sharp.IconButton BtnModificar;
         private FontAwesome.Sharp.IconButton BtnAgregar;
         private Panel panel1;
@@ -433,20 +329,12 @@
         private FontAwesome.Sharp.IconButton BtnCancelar;
         private FontAwesome.Sharp.IconButton BtnGuardar;
         private TextBox textBox4;
-        private Label label6;
         private TextBox textBox3;
-        private Label label5;
         private TextBox textBox2;
-        private Label label4;
-        private TextBox TxtTitulo;
+        private TextBox TxtNombre;
         private Label label3;
-        private NumericUpDown NumericDuracion;
-        private TextBox TxtPortada;
-        private NumericUpDown NumericCalificacion;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel LabelStatusMessage;
         private System.Windows.Forms.Timer TimerStatusBar;
-        private Label label7;
-        private ComboBox ComboPaises;
     }
 }

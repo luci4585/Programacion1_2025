@@ -43,5 +43,11 @@ namespace WindowsForms
             var peliculasEF = new PeliculasEFView();
             peliculasEF.ShowDialog();
         }
+
+        private void SubmenuPaisesEF_Click(object sender, EventArgs e)
+        {
+            var paisesEF = new PaisesEFView();
+            paisesEF.ShowDialog();
+        }
     }
 }
