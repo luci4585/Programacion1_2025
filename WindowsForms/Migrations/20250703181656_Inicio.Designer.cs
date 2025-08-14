@@ -11,7 +11,7 @@ using WindowsForms.DataContex;
 
 namespace WindowsForms.Migrations
 {
-    [DbContext(typeof(CineContext))]
+    [DbContext(typeof(TareaCineContext))]
     [Migration("20250703181656_Inicio")]
     partial class Inicio
     {

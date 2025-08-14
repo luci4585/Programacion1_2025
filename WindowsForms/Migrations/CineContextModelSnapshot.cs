@@ -10,7 +10,7 @@ using WindowsForms.DataContex;
 
 namespace WindowsForms.Migrations
 {
-    [DbContext(typeof(CineContext))]
+    [DbContext(typeof(TareaCineContext))]
     partial class CineContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -14,14 +14,14 @@ namespace WindowsForms.Services
     {
         public async Task<List<Pelicula>?> GetAllAsync()
         {
-            using (CineContext cine = new CineContext())
+            using (TareaCineContext cine = new TareaCineContext())
             {
                 return await cine.Peliculas.Include(p=>p.Pais).ToListAsync();
             }
         }
         public async Task<bool> DeleteAsync(int? id)
         {
-            using (CineContext cine = new CineContext())
+            using (TareaCineContext cine = new TareaCineContext())
             {
                 var peliculaABorrar = await cine.Peliculas.FindAsync(id);
                 peliculaABorrar.Eliminado = true; //marcamos la película como eliminada
@@ -39,7 +39,7 @@ namespace WindowsForms.Services
         }
         public async Task<bool> UpdateAsync(Pelicula pelicula)
         {
-            using (CineContext cine = new CineContext())
+            using (TareaCineContext cine = new TareaCineContext())
             {
                 cine.Peliculas.Update(pelicula);
                 var resultado = await cine.SaveChangesAsync();
@@ -55,7 +55,7 @@ namespace WindowsForms.Services
         }
         public async Task<bool> AddAsync(Pelicula pelicula)
         {
-            using (CineContext cine = new CineContext())
+            using (TareaCineContext cine = new TareaCineContext())
             {
                cine.Peliculas.Add(pelicula);
                 var resultado = await cine.SaveChangesAsync();
